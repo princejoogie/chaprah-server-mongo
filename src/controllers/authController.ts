@@ -49,14 +49,15 @@ export const loginController = async (
     if (!user) {
       res.status(404).json({
         success: false,
-        error: "Cannot find user.",
+        message: "Cannot find user.",
       });
     } else {
       const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
         res.status(200).json({
           success: true,
-          jwtToken: "Niceee",
+          jwtToken: `${user.username}qoWlCKWJoi23jbPDdwk`,
+          refreshToken: "email-Wjb297c2BLKcbwuia213kqcO",
         });
       } else {
         res.status(404).json({
@@ -68,7 +69,7 @@ export const loginController = async (
   } catch (err) {
     res.status(500).json({
       success: false,
-      error: err.message,
+      message: err.message,
     });
   }
 };
